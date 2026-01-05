@@ -2,14 +2,22 @@ name: Update Major Version Tag
 
 on:
   push:
+    branches-ignore:
+      - "**"
     tags:
       - "v*"
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 jobs:
-  update-majorver:
+  update-major-version-tag:
     name: Update Major Version Tag
     runs-on: ubuntu-latest
     steps:
-      - uses: nowactions/update-majorver@v1
+      - name: Update Major Version Tag
+        uses: cssnr/update-version-tags-action@v2
+        with:
+          tags: latest
